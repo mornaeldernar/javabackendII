@@ -1,20 +1,19 @@
 package com.mornaeldernar.sesion03.model;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.PositiveOrZero;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
 
 public class Producto {
-    @PositiveOrZero(message = "El identificador no puede ser un número negativo")
+    @PositiveOrZero(message = "El id debe ser cero o un entero positivo.")
     long id;
-    @NotEmpty(message = "El nombre del producto no puede estar vacío")
-    @Size(min = 5, max = 30, message = "El nombre del producto debe tener al menos 5 letras y ser menor a 30")
+    @NotBlank(message = "El nombre no puede ser un valor nulo o un espacio en blanco.")
     String nombre;
+    @DecimalMin(value = "1.00", message = "El precio debe hacer de al menos 1.00.", inclusive = true)
     float precio;
     String categoria;
+    @Pattern(regexp = "^(\\d{3}[-]?){2}\\d{4}$",message = "El numeroRegistro debe ser un número con el siguiente formato: ###-###-####")
     String numeroRegistro;
+    @PastOrPresent(message = "La fechaCreacion no puede ocurrir después del día de hoy.")
     private LocalDate fechaCreacion;
 }

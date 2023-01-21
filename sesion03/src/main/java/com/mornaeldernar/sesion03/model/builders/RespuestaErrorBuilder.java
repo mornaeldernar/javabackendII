@@ -13,6 +13,9 @@ import java.util.Map;
 public class RespuestaErrorBuilder {
     private int estatus;
     private Map<String, String> errores;
+    private String error;
+    private String mensaje;
+
     private String ruta;
 
     public RespuestaErrorBuilder estatus(int estatus) {
@@ -24,6 +27,15 @@ public class RespuestaErrorBuilder {
     public RespuestaErrorBuilder status(HttpStatus estatus) {
         this.estatus = estatus.value();
 
+        return this;
+    }
+    public RespuestaErrorBuilder error(String error) {
+        this.error = error;
+        return this;
+    }
+
+    public RespuestaErrorBuilder message(String mensaje) {
+        this.mensaje = mensaje;
         return this;
     }
 
@@ -54,6 +66,8 @@ public class RespuestaErrorBuilder {
         RespuestaError respuesta = new RespuestaError();
         respuesta.setEstatus(estatus);
         respuesta.setErrores(errores);
+        respuesta.setError(error);
+        respuesta.setMensaje(mensaje);
         respuesta.setRuta(ruta);
         return respuesta;
     }

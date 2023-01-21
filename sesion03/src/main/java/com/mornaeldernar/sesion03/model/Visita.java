@@ -11,6 +11,8 @@ public class Visita {
     @Positive(message = "El identificador del cliente no puede ser un número negativo o cero.")
     private long clienteId;
 
+    private Cliente cliente;
+
     @Future(message = "La fecha de la cita no puede ser en una fecha en el pasado.")
     private LocalDateTime fechaProgramada;
 
@@ -73,5 +75,13 @@ public class Visita {
 
     public void setVendedor(String vendedor) {
         this.vendedor = vendedor;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 }

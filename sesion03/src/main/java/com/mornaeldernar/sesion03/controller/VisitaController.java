@@ -16,6 +16,8 @@ import java.util.Map;
 public class VisitaController {
     @PostMapping("/visita")
     public ResponseEntity<Void> creaVisita(@Valid @RequestBody Visita visita){
+
+        System.out.println(visita.getCliente().getNombre());
         return ResponseEntity.created(URI.create("1")).build();
     }
 }
